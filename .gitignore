@@ -3,6 +3,9 @@
 # configs
 .env
 
+#image files
+/backend/images
+
 # compiled output
 /dist
 /tmp
