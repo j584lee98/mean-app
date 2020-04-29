@@ -28,7 +28,7 @@ export class PostsService {
                 title: post.title,
                 content: post.content,
                 imagePath: post.imagePath,
-                creator: post.creator
+                creator: post.creator,
               };
             }),
             maxPosts: postData.maxPosts,
@@ -36,7 +36,7 @@ export class PostsService {
         })
       )
       .subscribe((mappedPostData) => {
-        console.log(mappedPostData)
+        console.log(mappedPostData);
         this.posts = mappedPostData.posts;
         this.postsUpdated.next({
           posts: [...this.posts],
@@ -55,6 +55,7 @@ export class PostsService {
       title: string;
       content: string;
       imagePath: string;
+      creator: string;
     }>('http://localhost:3000/api/posts/' + id);
   }
 
@@ -82,17 +83,16 @@ export class PostsService {
       postData.append('content', content);
       postData.append('image', image, title);
     } else {
-      postData = { id, title, content, imagePath: image };
+      postData = { id, title, content, imagePath: image, creator: null };
     }
     this.http
       .put('http://localhost:3000/api/posts/' + id, postData)
-      .subscribe(response => {
+      .subscribe((response) => {
         this.router.navigate(['/']);
       });
   }
 
   deletePost(postId: string) {
-    return this.http
-      .delete('http://localhost:3000/api/posts/' + postId);
+    return this.http.delete('http://localhost:3000/api/posts/' + postId);
   }
 }
