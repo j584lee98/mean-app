@@ -12,14 +12,14 @@ exports.signup = (req, res, next) => {
       });
       user.save()
         .then(result => {
-          res.status(200).json({
-            message: 'User created',
-            result: result
-          });
+            res.status(200).json({
+              message: 'User created!',
+              result: result
+            });
         })
         .catch(err => {
-          res.status(500).json({
-            message: 'Invalid credentials'
+          res.status(409).json({
+            message: 'User already exists.'
           });
         });
     });
@@ -44,8 +44,8 @@ exports.login = (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        {email: fetchedUser.email, userId: fetchedUser._id },
-        'secret_key_for_jwt',
+        { email: fetchedUser.email, userId: fetchedUser._id },
+        process.env.JWT_KEY,
         { expiresIn: '1h' }
       );
       res.status(200).json({
