@@ -3,6 +3,9 @@
 #image files
 /backend/images
 
+#server side code
+/backend/backend.zip
+
 # compiled output
 /dist
 /tmp
