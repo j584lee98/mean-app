@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "concurrently \"ng serve\" \"nodemon server.js\"",
-    "start:server": "nodemon server.js"
+    "dev": "concurrently \"ng serve\" \"nodemon ./backend/server.js\"",
+    "start:server": "nodemon ./backend/server.js"
   },
   "private": true,
   "dependencies": {
